@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script type="text/javascript"
+src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+<title>Ajouter Star</title>
+</head>
+
+<body>
+<div layout:fragment="Mycontent">
+<div class="container">
+<div class="card">
+<div class="card-header" th:if="${mode == 'new'}"> Ajout Stars</div>
+<div class="card-header" th:if="${mode == 'edit'}">Modification Stars</div>
+
+
+<div class="card-body">
+<form th:action="@{saveStar}" method="post">
+<div class="form-group">
+<label class="control-label" hidden>ID Star :</label>
+<input type="hidden" name="idStar" class="form-control"
+th:value="${star.idStar}" />
+</div>
+<div class="form-group">
+<label class="control-label">Nom Star :</label>
+<input type="text" name="nameStar" class="form-control"
+th:value="${star.nameStar}" />
+<span th:errors= ${star.nameStar} class="text-danger"> </span>
+</div>
+<div class="form-group">
+<label class="control-label">Age Star :</label>
+<input type="text" name="age" class="form-control"
+th:value="${star.age}" />
+<span th:errors=${star.age} class="text-danger"> </span>
+</div>
+<div class="form-group">
+<label class="control-label">date de sa decouverte:</label>
+<input type="date" name="dateDiscovered" class="form-control"
+th:value="${star.dateDiscovered}"/>
+<span th:errors=${star.dateDiscovered} class="text-danger"> </span>
+</div>
+<div>
+<button type="submit" class="btn btn-primary">Ajouter</button>
+</div>
+</form>
+</div>
+<br/>
+<br/>
+<a href="ListeStars">Liste Stars</a>
+</div>
+</div></div>
+</body>
+</html>
+
+
+

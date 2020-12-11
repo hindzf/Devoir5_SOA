@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template"
+>
+<link rel="stylesheet" type="text/css"
+href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste stars2</title>
+</head>
+<body>
+
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+<div class="card-header">
+Liste stars
+</div>
+<div class="card-body">
+<table class="table table-striped">
+<tr>
+	<th>ID</th><th>Nom star</th><th>Age</th><th>Action</th><th></th>
+</tr>
+<tr th:each="p:${stars.content}">
+<tr th:each="p:${stars}">
+	<td th:text="${p.idStar}"></td>
+	<td th:text="${p.nameStar}"></td>
+	<td th:text="${p.age}"></td>
+	<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"  th:href="@{supprimerStar(id=${p.idStar},page=${currentPage},size=${size})}">Supprimer</a></td>
+	<td><a class="btn btn-primary"  th:href="@{modifierStar(id=${p.idStar},page=${currentPage},size=${size})}">Modifier</a></td>
+</tr>
+</table>
+<ul class="nav nav-pills">
+	<li th:each="page,status:${pages}">
+		<a th:class="${status.index==currentPage?'btn btn-primary':'btn' }"
+		th:href="@{ ListeStars(page=${status.index}, size=${size} ) }"
+		th:text="${status.index }"></a>
+	</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
